@@ -23,12 +23,50 @@ class MyProjectClass {
 }
 
 function main() {
-  // create an instance of the class
-  let myInstance = new MyProjectClass("value1", "value2");
-
-  // call a method on the instance
-  myInstance.myMethod();
+  const fillers = {
+    time: ["Long", "Very long", "Very very long", "Very very extremely long", "Some years", "A millenia", "A decade", "A short while"],
+    who: ["we", "they", "a small few", "you", "some of us", "all of us"],
+    what: ["vanished", "were right", "were wrong", "left", "fought", "stopped", "remembered"],
+    state: ["died", "healed", "stood still", "was forgotten", "remained", "faded away"],
+    what2: ["came back", "forgot", "began again", "started anew", "rallied", "fought back"]
+  };
+  
+  const template = `$time ago, $who $what and so the planet $state. 
+  But then, $who $what2. 
+  So the planet $state.
+  `;
+  
+  
+  // STUDENTS: You don't need to edit code below this line.
+  
+  const slotPattern = /\$(\w+)/;
+  
+  function replacer(match, name) {
+    let options = fillers[name];
+    if (options) {
+      return options[Math.floor(Math.random() * options.length)];
+    } else {
+      return `<UNKNOWN:${name}>`;
+    }
+  }
+  
+  function generate() {
+    let story = template;
+    while (story.match(slotPattern)) {
+      story = story.replace(slotPattern, replacer);
+    }
+  
+    /* global box */
+    //box.innerText = story;
+    $("#box").text(story);
+  }
+  
+  /* global clicker */
+  //clicker.onclick = generate;
+  $("#clicker").click(generate);
+  
+  generate();
 }
 
 // let's get this party started - uncomment me
-//main();
+main();
