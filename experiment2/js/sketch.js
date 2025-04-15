@@ -15,16 +15,70 @@ let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
 
-class MyClass {
-    constructor(param1, param2) {
-        this.property1 = param1;
-        this.property2 = param2;
-    }
+let cloversPerRow = 65;
+let spacing = 65;
 
-    myMethod() {
-        // code to run when method is called
-    }
+class CloverField {
+		constructor()
+		{
+			this.clovers = [];
+			this.baseColor = color(32, 121, 32);
+		}
+	
+		generateField()
+		{
+			let numClovers = 1400;
+			for (let i = 0; i < numClovers; i++)
+			{
+				this.clovers[i] = new Clover((i % (cloversPerRow)) * spacing, floor(i / (cloversPerRow)) * spacing, this.baseColor, random(0, PI));
+			}
+		}
+	
+		render()
+		{
+			for (let c = 0; c < this.clovers.length; c++)
+			{
+				this.clovers[c].render();
+			}
+		}
 }
+
+class Clover {
+	constructor(x, y, color, rotation)
+	{
+		this.x = x;
+		this.y = y;
+		this.color = color
+		this.rotation = rotation;
+	}
+	
+	render()
+	{
+		angleMode(RADIANS);
+		fill(32, 121 + this.rotation/2 * sin(millis()/2500) * 50, 32);
+		stroke('lightgreen');
+		push();
+		translate(this.x, this.y);
+		rotate(this.rotation + sin(millis()/2500)/2);
+		scale(0.75, 0.75, 0.5);
+		push();
+		translate(20, 20);
+		cloverLeaf();
+		pop();
+		rotate(4 * PI/6);
+		push();
+		translate(20, 25);
+		cloverLeaf();
+		pop();
+		rotate(4 * PI/6);
+		push();
+		translate(23, 20);
+		cloverLeaf();
+		pop();
+		pop();
+	}
+}
+
 
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
@@ -42,38 +96,35 @@ function setup() {
   canvas.parent("canvas-container");
   // resize canvas is the page is resized
 
-  // create an instance of the class
-  myInstance = new MyClass("VALUE1", "VALUE2");
-
   $(window).resize(function() {
     resizeScreen();
   });
   resizeScreen();
+
+  background(100, 200, 100);
+	//canvasSize = min(width,height)*0.9;
+	//generate();
+	//c = new Clover(width/2, height/2, 'darkgreen');
+	//c.render();
+	
+	cF = new CloverField();
+	cF.generateField();
+	//cF.render();
+	
+	//cTest = new Clover(width/2, height/2, 'darkgreen',  0);
 }
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
-  background(220);    
-  // call a method on the instance
-  myInstance.myMethod();
-
-  // Set up rotation for the rectangle
-  push(); // Save the current drawing context
-  translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  fill(234, 31, 81);
-  noStroke();
-  rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  pop(); // Restore the original drawing context
-
-  // The text is not affected by the translate and rotate
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text("p5*", centerHorz - 105, centerVert + 40);
+  background(100, 200, 100);
+	cF.render();
 }
 
-// mousePressed() function is called once after every time a mouse button is pressed
-function mousePressed() {
-    // code to run when mouse is pressed
+function cloverLeaf() {
+  strokeWeight(3);
+  angleMode(RADIANS);
+  arc(0, 0, 80, 50, 0, PI/4);
+  arc(0, 0, 50, 80, PI/4, PI/2);
+  arc(0, 0, 80, 50, -PI + PI/4, 0);
+  arc(0, 0, 50, 80, -3 * PI/2, PI * 2 - 3 * PI/4);
 }
