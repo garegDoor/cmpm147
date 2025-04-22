@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment X - Subject/Topic</title>
+	<title>Experiment 3 - Alternate Worlds</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -25,18 +25,44 @@
 	<!-- Use me for a JavaScript OOP Project -->
 	<script type="text/javascript" src="./js/project.js" DEFER></script>
 	<!-- Use me for a p5.js project -->
+	
 	<script type="text/javascript" src="./js/sketch.js" DEFER></script>
+
+	<script type="text/javascript" src="./js/sketch(1).js" DEFER></script>
+
+	<script src="./js/p2_solution.js" DEFER></script>
+
+	<script src="./js/p2_solution(1).js" DEFER></script>
+
+	
+	
+	
 </head>
 <body>
 	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
 	<main id="content">
 		<section>
 
-			<h1>Experiment X - Subject/Topic</h1>
+			<h1>Experiment 3 - Alternate Worlds</h1>
 
 			<div class="minor-section">
-				<div id="canvas-container">
-					<!-- canvas will be added here -->
+				<button id="reseedButton">
+					reseed
+				  </button>
+				  <span id="seedReport"></span>
+				  <hr />
+				  <span id="canvasContainer" style="margin: 10px;"></span>
+				  <textarea cols="40" rows="40" id="asciiBox" style="opacity: 0.5; letter-spacing: 1ex; width: 320px; margin: 10px; font-family: monospace;"></textarea>
+				  <div></div>
+				<button id="reseedButton1">
+					reseed1
+				  </button>
+				  <span id="seedReport1"></span>
+				  <hr />
+				  <span id="canvasContainer1" style="margin: 10px;"></span>
+				  <textarea cols="40" rows="40" id="asciiBox1" style="opacity: 0.5; letter-spacing: 1ex; width: 320px; margin: 10px; font-family: monospace;"></textarea>
+				  <!--<div id="canvas-container">-->
+					
 				</div>
                 <div class="fullscreen-box">
                     <button id="fullscreen">Fullscreen</button>
@@ -45,17 +71,17 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>For this experiment I made both a dungeon generator and overworld generator.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>The dungeon generator starts with a room and then branches off up to 4 other rooms connecting them with paths and placing chests in each branch room. The overworld generator uses noise with bitmasking to create a landscape and then draws transluscent rectangles above each tile of water to create a rippling wave affect over time.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>I am pretty happy with the results of the experiment and would've liked to add more if I had given myself more time, but I went right to the deadline on this one.</p>
 			</div>
 
 		</section>
