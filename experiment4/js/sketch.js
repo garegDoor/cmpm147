@@ -20,6 +20,7 @@ var textbox;
 
 let snails = [];
 let numSnails = 10;
+let snailImg;
 
 class Snail {
 	constructor(x, y)
@@ -33,7 +34,9 @@ class Snail {
 	{
 		noStroke();
 		fill(255, 0, 0);
-		rect(this.x, this.y, 50, 50);
+		//rect(this.x, this.y, 50, 50);
+    let sImg = image(snailImg, this.x, this.y);
+    snailImg.resize(100, 100);
 		//print("Snail rendered");
 	}
 	
@@ -43,6 +46,11 @@ class Snail {
 		this.y += random(-0.5, 0.5);
 		//print("snail moved");
 	}
+}
+
+function preload()
+{
+  snailImg = loadImage('./assets/snail.png');
 }
 
 function worldSeedChanged(key) {
