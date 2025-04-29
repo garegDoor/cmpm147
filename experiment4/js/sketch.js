@@ -18,6 +18,33 @@ let num_cols_per_screen, num_rows_per_screen;
 
 var textbox;
 
+let snails = [];
+let numSnails = 10;
+
+class Snail {
+	constructor(x, y)
+	{
+		this.x = x;
+		this.y = y;
+		//print("at " + this.x + " " + this.y);
+	}
+	
+	render()
+	{
+		noStroke();
+		fill(255, 0, 0);
+		rect(this.x, this.y, 50, 50);
+		//print("Snail rendered");
+	}
+	
+	move()
+	{
+		this.x += random(-0.5, 0.5);
+		this.y += random(-0.5, 0.5);
+		//print("snail moved");
+	}
+}
+
 function worldSeedChanged(key) {
 	seed = XXH.h32(key, 0);
 	noiseSeed(seed);
@@ -239,4 +266,21 @@ function draw() {
   }
 	translate(-camera_pos.x, 0);
 	updateWorldSeed(textbox.value());
+
+  for (s = 0; s < snails.length; s++)
+    {
+      snails[s].render();
+      
+      snails[s].move();
+    }
+    
+  if (millis() % 10 == 0)
+    spawnSnail(camera_pos.x + width + 100, random(0, height));
+}
+
+function spawnSnail(x, y) 
+{
+	let snail = new Snail(x, y);
+	snails.push(snail);
+	print("A snail spawned!");
 }
