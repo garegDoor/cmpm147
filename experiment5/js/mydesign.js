@@ -4,25 +4,20 @@
 function getInspirations() {
   return [
     {
-      name: "Lunch atop a Skyscraper", 
-      assetUrl: "img/lunch-on-a-skyscraper.jpg",
-      credit: "Lunch atop a Skyscraper, Charles Clyde Ebbets, 1932"
+      name: "Jeff the Slug",
+      assetUrl: "img/jeff-the-slug.jpg",
+      credit: "Jeff the Slug, a picture from my camera role, Gabe Ahrens, 2025"
     },
     {
-      name: "Train Wreck", 
-      assetUrl: "img/train-wreck.jpg",
-      credit: "Train Wreck At Monteparnasse, Levy & fils, 1895"
+      name: "Grace",
+      assetUrl: "img/grace.jpg",
+      credit: "Grace Herman, my girlfriend, 2025"
     },
     {
-      name: "Migrant mother", 
-      assetUrl: "img/migrant-mother.jpg",
-      credit: "Migrant Mother near Nipomo, California, Dorothea Lange, 1936"
-    },
-    {
-      name: "Disaster Girl", 
-      assetUrl: "img/girl-with-fire.jpg",
-      credit: "Four-year-old Zoë Roth, 2005"
-    },
+      name: "Cat",
+      assetUrl: "img/cat.jpg",
+      credit: "Cat, a picture from my camera role, Gabe Ahrens, 2025"
+    }
   ];
 }
 
