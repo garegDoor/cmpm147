@@ -104,7 +104,9 @@ function draw() {
   if (timer == 0)
   {
     //currentDesign = JSON.parse(JSON.stringify(bestDesign));
-    //currentDesign.cells = rehydrateCells(currentDesign.cells);
+    //currentDesign.cells = rehydrateCells(bestDesign.cells);
+    //resetCells(currentDesign.cells, bestDesign.cells);
+
     console.log("Reset to best so far");
     timer = rFreq;
   }
@@ -119,6 +121,7 @@ function draw() {
   if (nextScore > currentScore) {
     currentScore = nextScore;
     bestDesign = currentDesign;
+
     memorialize();
     bestScore.innerHTML = currentScore;
   }

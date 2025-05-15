@@ -185,6 +185,7 @@ function initDesign(inspiration) {
   }
 
   cells = design.cells;
+  bestCells = design.cells;
 
   
   
