@@ -1,7 +1,7 @@
 /* exported p4_inspirations, p4_initialize, p4_render, p4_mutate */
 
 let cells = [];
-let cellSize = 5;
+let cellSize = 7;
 let canvasSize = 1000;
 
 let rowLen;
@@ -208,6 +208,18 @@ function renderDesign(design, inspiration) {
 function mutateDesign(design, inspiration, rate) {
   //design.bg = mut(design.bg, 0, 255, rate);
   
+  for (let j = 0; j < design.cells.length; j++)
+  {
+    for (let i = 0; i < design.cells[j].length; i++)
+    {
+      let n = noise(i, j);
+      if (n <= (rate / 5) && design.cells[j][i].alive == 0)
+      {
+        design.cells[j][i].alive = 1;
+      }
+    }
+  }
+
   for (let j = 0; j < design.cells.length; j++)
   {
     for (let i = 0; i < design.cells[j].length; i++)

@@ -95,6 +95,7 @@ function draw() {
     return;
   }
   randomSeed(mutationCount++);
+  noiseSeed(mutationCount);
 
   if (frameCount % 60 == 0 && timer > 0)
   {
@@ -107,7 +108,7 @@ function draw() {
     //currentDesign.cells = rehydrateCells(bestDesign.cells);
     //resetCells(currentDesign.cells, bestDesign.cells);
 
-    console.log("Reset to best so far");
+    //console.log("Reset to best so far");
     timer = rFreq;
   }
 
