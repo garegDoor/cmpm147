@@ -1,11 +1,13 @@
 /* exported p4_inspirations, p4_initialize, p4_render, p4_mutate */
 
 let cells = [];
-let cellSize = 7;
+let cellSize = 15;
 let canvasSize = 1000;
 
 let rowLen;
 let numRows;
+
+let setBGBefore;
 
 class Cell {
 	constructor(x, y)
@@ -187,14 +189,27 @@ function initDesign(inspiration) {
   cells = design.cells;
   bestCells = design.cells;
 
-  
+  setBGBefore = false;
   
   return design;
 }
 
-function renderDesign(design, inspiration) {
+function easeInOutQuad(x){
+  return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+}
+
+function renderDesign(design, inspiration, rate) {
+  if (!setBGBefore)
+  {
+    background(design.bg);
+    setBGBefore = true;
+  }
+  else
+  {
+    //background(design.bg, design.bg, design.bg, 1 + 150 * (Math.cos((rate * Math.PI) / 2)));
+    background(design.bg, design.bg, design.bg, 1 + 127 * easeInOutQuad(rate));
+  }
   
-  background(design.bg);
   noStroke();
   for (let j = 0; j < design.cells.length; j++)
   {
@@ -242,6 +257,7 @@ function mutateDesign(design, inspiration, rate) {
     for (let i = 0; i < design.cells[j].length; i++)
     {
       design.cells[j][i].update();
+      design.cells[j][i].color = inspiration.image.get(map(i, 0, rowLen, 0, inspiration.image.width) + random(-cellSize * 1 - easeInOutQuad(rate), cellSize * 1 - easeInOutQuad(rate)), map(j, 0, numRows, 0, inspiration.image.height) + random(-cellSize * 1 - easeInOutQuad(rate), cellSize * 1 - easeInOutQuad(rate)));
     }
   }
 }

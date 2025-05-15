@@ -116,7 +116,7 @@ function draw() {
   mutateDesign(currentDesign, currentInspiration, slider.value/100.0);
   
   randomSeed(0);
-  renderDesign(currentDesign, currentInspiration);
+  renderDesign(currentDesign, currentInspiration, slider.value/100.0);
   let nextScore = evaluate();
   activeScore.innerHTML = nextScore;
   if (nextScore > currentScore) {
