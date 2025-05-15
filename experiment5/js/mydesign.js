@@ -18,6 +18,7 @@ class Cell {
 		this.color = 'white';
 		
 		this.alive = floor(random(0, 2));
+    //this.alive = 0;
 		
 		
 		this.neighbors = 0;
@@ -172,6 +173,8 @@ function initDesign(inspiration) {
     cells: []
   }
   
+  cellSize = floor((inspiration.image.width + inspiration.image.height)/550);
+
   rowLen = floor(width/cellSize);
   numRows = floor(height/cellSize);
 
@@ -207,7 +210,7 @@ function renderDesign(design, inspiration, rate) {
   else
   {
     //background(design.bg, design.bg, design.bg, 1 + 150 * (Math.cos((rate * Math.PI) / 2)));
-    background(design.bg, design.bg, design.bg, 1 + 127 * easeInOutQuad(rate));
+    background(design.bg, design.bg, design.bg, 1 + 149 * easeInOutQuad(rate/1.5));
   }
   
   noStroke();
@@ -257,7 +260,7 @@ function mutateDesign(design, inspiration, rate) {
     for (let i = 0; i < design.cells[j].length; i++)
     {
       design.cells[j][i].update();
-      design.cells[j][i].color = inspiration.image.get(map(i, 0, rowLen, 0, inspiration.image.width) + random(-cellSize * 1 - easeInOutQuad(rate), cellSize * 1 - easeInOutQuad(rate)), map(j, 0, numRows, 0, inspiration.image.height) + random(-cellSize * 1 - easeInOutQuad(rate), cellSize * 1 - easeInOutQuad(rate)));
+      design.cells[j][i].color = inspiration.image.get(map(i, 0, rowLen, 0, inspiration.image.width) + random(-cellSize * 50 * (rate/5), cellSize * 50 * (rate/5)), map(j, 0, numRows, 0, inspiration.image.height) + random(-cellSize * 50 * (rate/5), cellSize * 50 * (rate/5)));
     }
   }
 }
