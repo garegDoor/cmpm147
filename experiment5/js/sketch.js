@@ -11,6 +11,8 @@ let currentScore;
 let currentInspiration;
 let currentCanvas;
 let currentInspirationPixels;
+let timer = 0;
+let rFreq = 5; // how often to reset the simulation back to the best one so far in seconds
 
 function preload() {
   
@@ -93,7 +95,20 @@ function draw() {
     return;
   }
   randomSeed(mutationCount++);
-  currentDesign = JSON.parse(JSON.stringify(bestDesign));
+
+  if (frameCount % 60 == 0 && timer > 0)
+  {
+    timer--;
+  }
+
+  if (timer == 0)
+  {
+    //currentDesign = JSON.parse(JSON.stringify(bestDesign));
+    //currentDesign.cells = rehydrateCells(currentDesign.cells);
+    console.log("Reset to best so far");
+    timer = rFreq;
+  }
+
   rate.innerHTML = slider.value;
   mutateDesign(currentDesign, currentInspiration, slider.value/100.0);
   
